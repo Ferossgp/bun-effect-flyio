@@ -16,10 +16,16 @@ interface Table {
 export type Db = Kysely<Database>;
 export const Db = Context.GenericTag<Db>("@services/Db");
 
-export const createDb = (fileName: string) => Effect.gen(function* () {
+export const createDb = () => Effect.gen(function* () {
+  const dbPath = process.env.DB_PATH
+
+  if (!dbPath) {
+    yield* Effect.die("DB_PATH is not set")
+  }
+
   const db = new Kysely<Database>({
     dialect: new BunSqliteDialect({
-      database: new Sqlite(path.join(process.cwd(), "/", fileName)),
+      database: new Sqlite(dbPath),
     }),
   });
 
@@ -35,4 +41,4 @@ export const createDb = (fileName: string) => Effect.gen(function* () {
   return db
 });
 
-export const DbLive = Layer.effect(Db, createDb("db.sqlite"));
+export const DbLive = Layer.effect(Db, createDb());

@@ -5,7 +5,7 @@ import { HttpLive } from "./server";
 
 const MainLive = Layer.provide(
   HttpLive,
-  Layer.provideMerge(DbLive, BunHttpServer.server.layer({ port: 3000 }))
+  Layer.provideMerge(DbLive, BunHttpServer.server.layer({ port: process.env.PORT }))
 );
 
 BunRuntime.runMain(Layer.launch(MainLive));

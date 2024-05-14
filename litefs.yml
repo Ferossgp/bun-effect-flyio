@@ -46,7 +46,7 @@ proxy:
   addr: ":3000"
 
   # Hostport of your application.
-  target: "localhost:3000"
+  target: "localhost:3001"
 
   # Filename of the SQLite database you want to use for TXID tracking.
   db: "db.sqlite"

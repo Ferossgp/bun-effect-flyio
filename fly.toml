@@ -1,9 +1,10 @@
-# fly.toml app configuration file generated for stream-casts on 2024-05-07T14:17:25+02:00
+# fly.toml app configuration file generated for bun-sqlite on 2024-05-14T20:00:35+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'stream-casts'
+app = 'bun-sqlite'
+primary_region = 'ams'
 
 [build]
 
@@ -16,9 +17,7 @@ app = 'stream-casts'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'
 
 [mounts]
   source = "litefs"
